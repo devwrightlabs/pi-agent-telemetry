@@ -1,0 +1,58 @@
+{
+  "name": "@devright/pi-agent-telemetry",
+  "version": "0.1.0",
+  "description": "Strictly typed TypeScript DevOps, Telemetry, and AI Orchestration engine for the native Pi Network mobile webview container.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit"
+  },
+  "keywords": [
+    "pi-network",
+    "telemetry",
+    "devops",
+    "webview",
+    "mcp",
+    "ai-orchestration",
+    "react",
+    "typescript"
+  ],
+  "author": "Devright Labs",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": false
+    },
+    "react-dom": {
+      "optional": false
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.5"
+  }
+}
