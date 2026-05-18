@@ -94,6 +94,10 @@ export function useTelemetryContext(): TelemetryContextValue {
  *
  * All subsystems are cleaned up on unmount via the returned Effect teardown.
  *
+ * **Important:** The `config` prop is read once on mount. To prevent accidental
+ * re-initialization, pass a stable reference (e.g., a module-level constant or
+ * a `useMemo`-wrapped value). Config changes after mount are intentionally ignored.
+ *
  * @param props - Provider props including the TelemetryEngineConfig.
  */
 export function TelemetryProvider({

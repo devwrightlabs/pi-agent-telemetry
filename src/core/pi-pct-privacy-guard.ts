@@ -140,15 +140,13 @@ async function scrubPayload(
       const { scrubbed, labels } = scrubString(value);
       if (labels.length > 0) {
         const valueHash = await sha256Hex(value);
-        for (const label of labels) {
-          records.push({
-            fieldName: key,
-            strategy: "redact",
-            valueHash,
-          });
-          // Suppress unused variable warning — label is used for documentation
-          void label;
-        }
+        // Create one scrub record per field (not per label) to avoid duplicates.
+        // The labels list documents which PII patterns were found in this field.
+        records.push({
+          fieldName: key,
+          strategy: "redact",
+          valueHash,
+        });
         sanitized[key] = scrubbed;
       } else {
         sanitized[key] = value;

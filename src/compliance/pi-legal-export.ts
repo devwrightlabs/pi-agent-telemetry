@@ -119,9 +119,12 @@ async function importHexKey(hexKey: string): Promise<CryptoKey> {
         `Received ${hexKey.length} characters.`
     );
   }
-  const keyBytes = new Uint8Array(
-    hexKey.match(/.{2}/g)!.map((b) => parseInt(b, 16))
-  );
+  const hexPairs = hexKey.match(/.{2}/g);
+  if (hexPairs === null || hexPairs.length !== 32) {
+    throw new Error("AES-256 key contains invalid hex characters.");
+  }
+  // Each element is guaranteed to be a 2-char string by the regex and length check above.
+  const keyBytes = new Uint8Array(hexPairs.map((b) => parseInt(b!, 16)));
   return crypto.subtle.importKey(
     "raw",
     keyBytes,

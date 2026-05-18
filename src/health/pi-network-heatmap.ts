@@ -90,8 +90,7 @@ function normalizeEndpoint(url: string): string {
     return `${parsed.protocol}//${parsed.host}${path}`;
   } catch {
     // Relative URL
-    return url
-      .split("?")[0]!
+    return (url.split("?")[0] ?? url)
       .replace(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi, ":uuid")
       .replace(/\/\d+/g, "/:id")
       .replace(/\/[0-9a-f]{20,}/gi, "/:hash");
